@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -ex
+cd /tmp
+
+# get static
+wget -qc 'https://github.com/sharkdp/bat/releases/download/v0.18.3/bat-v0.18.3-x86_64-unknown-linux-musl.tar.gz' -O bat.tar.gz
+tar -zxvf bat.tar.gz
+cd bat-*
+chmod +x bat
+cp bat "$PORTABLE/bin/bat"
