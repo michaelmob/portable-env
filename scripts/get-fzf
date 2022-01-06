@@ -1,7 +1,12 @@
 #!/usr/bin/env sh
 [ $(which fzf) ] && exit 1
+
 if [ ! -d ~/.fzf ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install --bin
 fi
+
+ln -sf ~/.fzf/bin/fzf $PORTABLE/bin/fzf
+ln -sf ~/.fzf/bin/fzf-tmux $PORTABLE/bin/fzf-tmux
+
 exit 0
