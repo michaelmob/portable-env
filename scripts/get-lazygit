@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -ex
+
+URL='https://github.com/jesseduffield/lazygit/releases/download/v0.31.4/lazygit_0.31.4_Linux_x86_64.tar.gz' 
+
+cd /tmp
+wget -qO- "$URL" > /tmp/lazygit.tar.gz
+tar xvf lazygit.tar.gz
+
+mkdir -p $PORTABLE/bin
+cp lazygit $PORTABLE/bin/lazygit

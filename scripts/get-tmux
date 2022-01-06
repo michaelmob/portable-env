@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+export HERE="$(realpath "${0%/*}/..")"
+
+URL='https://github.com/nelsonenzo/tmux-appimage/releases/download/tmux3.1b/tmux-3.1b-x86_64.AppImage'
+
+wget -O 'bin/tmux.appimage' "$URL"
+chmod +x 'bin/tmux.appimage'
+bin/tmux.appimage --appimage-extract
+ln -sf "$PWD/squashfs-root/usr/bin/tmux" "$PWD/bin/tmux"
