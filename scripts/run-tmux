@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+cd "${0%/*}/.."
+source './scripts/utils.bash'
+if [ ! "$(which tmux)" ]; then
+  error_msg 'tmux not found, run "get-tmux"'
+  exit 1
+fi
+TERM=xterm exec "$PWD/bin/tmux" -f "$PWD/.tmux.conf" -L portable $@

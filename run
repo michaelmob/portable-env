@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+#
+# run mike's portable environment
+# dependencies: tmux, fzf, random-word
+#
+cd "$(realpath "${0%/*}")"
+source ./activate
+
+# if we are given one argument, use it as the session name
+if [[ "$#" = 1 ]]; then
+	run-tmux new-session -A -s "$1"
+	exit 0
+fi
+
+# get list of all windows that arent attached
+unattached="$(run-tmux ls 2> /dev/null | grep -v '(attached)$')"
+session_name=''
+
+# if list is empty, create new session with random word
+# otherwise, show list and open session of selected
+if [[ -z "$unattached" ]]; then
+	session_name="$(random-word)"
+else
+	session_full="$(echo $unattached | ~/.fzf/bin/fzf --reverse --select-1)"
+	session_name="${session_full%%:*}"
+	session_name="${session_name//:}"
+fi
+
+run-tmux new-session -A -s "${session_name}" $@

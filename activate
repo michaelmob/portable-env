@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+export PORTABLE="$HOME/.portable"
+#export PORTABLE="$(cd -- "$(dirname "$0")" > /dev/null 2>&1; pwd -P)"
+
+prepend_to_path() {
+  PATH=":$PATH"
+  PATH="$1${PATH//$1:/}"
+}
+
+prepend_to_path "$PORTABLE/bin"
+prepend_to_path "$PORTABLE/scripts"
+
+source "$PORTABLE/.bashrc"
+source "$PORTABLE/.bash_aliases"
