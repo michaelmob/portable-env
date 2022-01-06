@@ -6,6 +6,8 @@
 cd "$(realpath "${0%/*}")"
 source ./activate
 
+[[ "$(which tmux)" ]] || get-tmux
+
 # if we are given one argument, use it as the session name
 if [[ "$#" = 1 ]]; then
 	run-tmux new-session -A -s "$1"
