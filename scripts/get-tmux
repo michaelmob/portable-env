@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 export PORTABLE="$(realpath "${0%/*}/..")"
 
+
 FILE="$PORTABLE/bin/tmux.appimage"
 URL='https://github.com/nelsonenzo/tmux-appimage/releases/download/tmux3.1b/tmux-3.1b-x86_64.AppImage'
 
+mkdir -p "$PORTABLE/bin/tmux"
 wget -O "$FILE" "$URL"
 chmod +x "$FILE"
-mkdir -p "$PORTABLE/bin/tmux"
 "$FILE" --appimage-extract
 ln -sf "$PORTABLE/squashfs-root/usr/bin/tmux" "$PORTABLE/bin/tmux"
