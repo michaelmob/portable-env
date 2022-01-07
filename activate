@@ -11,9 +11,11 @@ prepend_to_path "$PORTABLE/bin"
 prepend_to_path "$PORTABLE/scripts"
 
 source_file() {
-	[ -r "$1" ] && source "$1"
+  [ -f "$1" ] && source "$1"
 }
 
 source_file "$PORTABLE/.profile"
 source_file "$PORTABLE/.bashrc"
 source_file "$PORTABLE/.bash_aliases"
+
+source_file "$HOME/.fzf/shell/key-bindings.bash"
